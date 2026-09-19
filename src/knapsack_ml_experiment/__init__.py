@@ -1,10 +1,22 @@
+from .analysis import build_labeled_dataset, evaluate_instance, save_failure_plots
 from .dynamic_programming import solve_dynamic_programming
+from .generation import (
+    KnapsackInstance,
+    generate_independent_instance,
+    generate_independent_instances,
+)
 from .greedy import solve_greedy
 from .models import Item, KnapsackSolution
 
 __all__ = [
     "Item",
+    "KnapsackInstance",
     "KnapsackSolution",
+    "build_labeled_dataset",
+    "evaluate_instance",
+    "generate_independent_instance",
+    "generate_independent_instances",
+    "save_failure_plots",
     "solve_dynamic_programming",
     "solve_greedy",
 ]
