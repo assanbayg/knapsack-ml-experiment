@@ -4,6 +4,13 @@ from knapsack_ml_experiment import Item, solve_greedy
 
 
 class TestGreedySolver(unittest.TestCase):
+    def test_returns_empty_solution_for_empty_items(self) -> None:
+        solution = solve_greedy([], capacity=10)
+
+        self.assertEqual(solution.selected_items, ())
+        self.assertEqual(solution.total_weight, 0)
+        self.assertEqual(solution.total_value, 0)
+
     def test_selects_items_by_ratio_when_they_fit(self) -> None:
         items = [
             Item("A", weight=2, value=6),

@@ -47,7 +47,10 @@ def solve_dynamic_programming(
     remaining_capacity = capacity
 
     for item_count in range(number_of_items, 0, -1):
-        if table[item_count][remaining_capacity] == table[item_count - 1][remaining_capacity]:
+        value_with_first_items = table[item_count][remaining_capacity]
+        value_without_last_item = table[item_count - 1][remaining_capacity]
+
+        if value_with_first_items == value_without_last_item:
             continue
 
         item = item_list[item_count - 1]
