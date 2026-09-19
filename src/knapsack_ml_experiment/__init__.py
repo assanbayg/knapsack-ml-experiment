@@ -4,6 +4,12 @@ from .generation import (
     KnapsackInstance,
     generate_independent_instance,
     generate_independent_instances,
+    generate_similar_ratio_instance,
+    generate_similar_ratio_instances,
+    generate_strongly_correlated_instance,
+    generate_strongly_correlated_instances,
+    generate_weakly_correlated_instance,
+    generate_weakly_correlated_instances,
 )
 from .greedy import solve_greedy
 from .models import Item, KnapsackSolution
@@ -16,6 +22,12 @@ __all__ = [
     "evaluate_instance",
     "generate_independent_instance",
     "generate_independent_instances",
+    "generate_similar_ratio_instance",
+    "generate_similar_ratio_instances",
+    "generate_strongly_correlated_instance",
+    "generate_strongly_correlated_instances",
+    "generate_weakly_correlated_instance",
+    "generate_weakly_correlated_instances",
     "save_failure_plots",
     "solve_dynamic_programming",
     "solve_greedy",
