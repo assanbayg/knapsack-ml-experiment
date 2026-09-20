@@ -1,4 +1,9 @@
-from .analysis import build_labeled_dataset, evaluate_instance, save_failure_plots
+from .analysis import (
+    build_labeled_dataset,
+    evaluate_instance,
+    save_failure_plots,
+    split_dataset_by_seed,
+)
 from .dynamic_programming import solve_dynamic_programming
 from .generation import (
     KnapsackInstance,
@@ -29,6 +34,7 @@ __all__ = [
     "generate_weakly_correlated_instance",
     "generate_weakly_correlated_instances",
     "save_failure_plots",
+    "split_dataset_by_seed",
     "solve_dynamic_programming",
     "solve_greedy",
 ]

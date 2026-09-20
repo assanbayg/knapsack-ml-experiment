@@ -18,7 +18,7 @@ Here are the steps for this experiment:
 4. **Expand instance families**
    - Add correlated, similar-ratio, and deliberately adversarial instances.
    - Keep a `family` column so you can evaluate each group separately.
-   - Split using generation seeds, not arbitrary rows from one generated batch.
+   - Split using generation seeds, not arbitrary rows from one generated batch. [DONE]
 5. **Train the first classifier**
    - Add scikit-learn only at this stage.
    - Begin with logistic regression.

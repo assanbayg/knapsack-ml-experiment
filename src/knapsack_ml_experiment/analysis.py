@@ -1,5 +1,6 @@
 """Label generated instances and visualize greedy failures."""
 
+import random
 from pathlib import Path
 from typing import Iterable
 
@@ -45,6 +46,53 @@ def build_labeled_dataset(
     """Create one labeled row per generated knapsack instance."""
     rows = [evaluate_instance(instance) for instance in instances]
     return pd.DataFrame(rows)
+
+
+def split_dataset_by_seed(
+    dataset: pd.DataFrame,
+    *,
+    train_fraction: float = 0.7,
+    validation_fraction: float = 0.15,
+    random_seed: int = 0,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Split rows while keeping every occurrence of a seed together.
+
+    A seed may occur once per instance family. Assigning unique seeds rather
+    than individual rows prevents the same seed from appearing in multiple
+    splits and preserves family balance when families share the same seeds.
+    """
+    if "seed" not in dataset.columns:
+        raise ValueError("dataset must contain a seed column")
+    if train_fraction <= 0 or validation_fraction <= 0:
+        raise ValueError("split fractions must be positive")
+    if train_fraction + validation_fraction >= 1:
+        raise ValueError("train and validation fractions must sum to less than 1")
+
+    seeds = dataset["seed"].drop_duplicates().tolist()
+    random.Random(random_seed).shuffle(seeds)
+
+    train_count = round(len(seeds) * train_fraction)
+    validation_count = round(len(seeds) * validation_fraction)
+    test_count = len(seeds) - train_count - validation_count
+    if min(train_count, validation_count, test_count) <= 0:
+        raise ValueError("dataset does not contain enough unique seeds for this split")
+
+    train_seeds = set(seeds[:train_count])
+    validation_seeds = set(
+        seeds[train_count : train_count + validation_count]
+    )
+    test_seeds = set(seeds[train_count + validation_count :])
+
+    def rows_for(selected_seeds: set[object]) -> pd.DataFrame:
+        return dataset.loc[dataset["seed"].isin(selected_seeds)].reset_index(
+            drop=True
+        )
+
+    return (
+        rows_for(train_seeds),
+        rows_for(validation_seeds),
+        rows_for(test_seeds),
+    )
 
 
 def save_failure_plots(dataset: pd.DataFrame, output_directory: Path) -> None:
