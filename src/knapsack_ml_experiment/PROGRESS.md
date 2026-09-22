@@ -15,16 +15,16 @@ Here are the steps for this experiment:
    - Generate perhaps 1,000 instances.
    - Record greedy value, optimal value, failure label, and relative gap.
    - Plot failure frequency and gap distribution before doing any ML.
-4. **Expand instance families**
+4. **Expand instance families [DONE]**
    - Add correlated, similar-ratio, and deliberately adversarial instances.
    - Keep a `family` column so you can evaluate each group separately.
-   - Split using generation seeds, not arbitrary rows from one generated batch. [DONE]
-5. **Train the first classifier**
+   - Split using generation seeds, not arbitrary rows from one generated batch.
+5. **Train the first classifier [DONE]**
    - Add scikit-learn only at this stage.
    - Begin with logistic regression.
    - Examine recall for greedy failures, not merely accuracy.
    - Investigate which features appear useful.
-6. **Construct the actual hybrid**
+6. **Construct the actual hybrid [DONE]**
    - If predicted failure probability exceeds a threshold, run DP.
    - Otherwise, accept greedy.
    - Compare always-greedy, hybrid, and always-DP using:

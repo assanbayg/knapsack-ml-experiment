@@ -17,14 +17,23 @@ from .generation import (
     generate_weakly_correlated_instances,
 )
 from .greedy import solve_greedy
+from .hybrid import (
+    FEATURE_COLUMNS,
+    HybridResult,
+    extract_hybrid_features,
+    solve_hybrid,
+)
 from .models import Item, KnapsackSolution
 
 __all__ = [
     "Item",
+    "FEATURE_COLUMNS",
+    "HybridResult",
     "KnapsackInstance",
     "KnapsackSolution",
     "build_labeled_dataset",
     "evaluate_instance",
+    "extract_hybrid_features",
     "generate_independent_instance",
     "generate_independent_instances",
     "generate_similar_ratio_instance",
@@ -37,6 +46,7 @@ __all__ = [
     "split_dataset_by_seed",
     "solve_dynamic_programming",
     "solve_greedy",
+    "solve_hybrid",
 ]
 
 
