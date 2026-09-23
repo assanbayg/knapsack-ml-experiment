@@ -33,7 +33,7 @@ Here are the steps for this experiment:
      - percentage sent to DP,
      - end-to-end runtime,
      - false negatives.
-7. **Test distribution shift**
+7. **Test distribution shift [DONE]**
    - Evaluate larger instances or an unseen generator family.
    - Vary the classification threshold to plot the quality-versus-DP-usage tradeoff.
    - Only then try a random forest as the nonlinear comparison.

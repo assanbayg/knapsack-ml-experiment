@@ -82,6 +82,29 @@ The individual predictors will be evaluated with classification metrics such as 
 
 The classifier threshold will be varied to produce a tradeoff curve between dynamic-programming usage and solution quality. The hybrid should be compared with the two endpoints: always use greedy and always use dynamic programming.
 
+## Notebook reading order
+
+The notebooks follow the experiment from verifying the classical algorithms to
+evaluating the complete ML-guided solver:
+
+1. [`compare_greedy_and_dp.ipynb`](notebooks/compare_greedy_and_dp.ipynb) —
+   verify both solvers on small examples and observe why ratio-greedy can fail.
+2. [`independent_data_analysis.ipynb`](notebooks/independent_data_analysis.ipynb)
+   — generate the first independent instances and examine failure frequency and
+   relative gaps.
+3. [`other_families_analysis.ipynb`](notebooks/other_families_analysis.ipynb) —
+   add correlated and similar-ratio families, then compare how greedy behaves
+   across them.
+4. [`classifier.ipynb`](notebooks/classifier.ipynb) — train logistic regression
+   to predict whether greedy will fail and inspect its validation performance.
+5. [`compare_hybrid.ipynb`](notebooks/compare_hybrid.ipynb) — compare
+   always-greedy, the classifier-guided hybrid, and always-DP on solution
+   quality, DP usage, runtime, and false negatives.
+6. [`distribution_shift.ipynb`](notebooks/distribution_shift.ipynb) — test the
+   trained selector on larger instances, trace the quality-versus-DP-usage
+   curve across thresholds, and compare logistic regression with a random
+   forest.
+
 ## Learning goals
 
 By completing this experiment, I expect to learn:
